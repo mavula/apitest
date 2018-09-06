@@ -3,7 +3,7 @@ This is simple API call to retrieve restaurant menu items
 
 Run  Command:
 
-./apitest.py ${restaurantid}
+./api.py ${restaurantid}
 
 or 
 
