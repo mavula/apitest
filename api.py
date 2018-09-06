@@ -25,6 +25,10 @@ def readConfig(file_name='db.ini', section='postgresql'):
 #enddef
 
 if __name__ == '__main__':
+	
+	if len(sys.argv) == 1: 
+		reply({"error":"Require restaurant id"})
+	#endif 
 
 	db = readConfig()
 	conn = None
@@ -35,7 +39,7 @@ if __name__ == '__main__':
 	except (Exception, psycopg2.DatabaseError) as error:
 		reply({"error":"Couldn't connect to database"})
 		
-	query = "select item_name, price from restaurant_items where id="+restaurant_id
+	query = "select item_name, price from restaurant_items where id="+sys.argv[1]
 	cur.execute(query)
 	results = cur.fetchall()
 
