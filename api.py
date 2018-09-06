@@ -35,15 +35,15 @@ if __name__ == '__main__':
 	except (Exception, psycopg2.DatabaseError) as error:
 		reply({"error":"Couldn't connect to database"})
 		
-	query = "select * from restaurant_items where id="+restaurant_id
+	query = "select item_name, price from restaurant_items where id="+restaurant_id
 	cur.execute(query)
 	results = cur.fetchall()
-	
+
 	items = {}
 	items["status_code"] = 200
 	items["content"] = []
 	for item in results:
-		items["content"].append(item["item_name"])
+		items["content"].append({"item_name": item["item_name"], "price": item["price"]})
 	
 	## Convert array to json
 	print json.dump(items)
